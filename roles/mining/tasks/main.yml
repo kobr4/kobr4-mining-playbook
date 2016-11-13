@@ -1,0 +1,16 @@
+---
+
+- copy: src=group_vars/mining/launcher.sh dest=/usr/local/bin/
+  become: yes
+
+- file: path=/usr/local/bin/launcher.sh mode="a+rx"
+  become: yes
+
+- copy: src=group_vars/mining/miner.service dest=/etc/systemd/system
+  become: yes
+
+- command: systemctl enable miner.service
+  become: yes
+#    name: miner
+#    enabled: yes
+#    masked: no
