@@ -1,12 +1,12 @@
 [Unit]
-Description=Claymore daemon
+Description=Miner daemon
 #After=network.target auditd.service
 
 [Service]
 Type=forking
-ExecStart=/usr/local/bin/claymore.sh start
-ExecStop=/usr/local/bin/claymore.sh stop
-ExecReload=/usr/local/bin/claymore.sh reload
+ExecStart=/usr/local/bin/launcher.sh start
+ExecStop=/usr/local/bin/launcher.sh stop
+ExecReload=/usr/local/bin/launcher.sh reload
 
 [Install]
 WantedBy=multi-user.target
