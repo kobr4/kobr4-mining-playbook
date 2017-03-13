@@ -11,6 +11,13 @@
 
 - command: systemctl enable miner.service
   become: yes
+
+- cron:
+    name: "Reboot every 12h"
+    minute: "0"
+    hour: "0,12"
+    job : "/sbin/reboot"
+
 #    name: miner
 #    enabled: yes
 #    masked: no
