@@ -17,6 +17,7 @@
     minute: "0"
     hour: "0,12"
     job : "/sbin/reboot"
+  become: yes
 
 #    name: miner
 #    enabled: yes

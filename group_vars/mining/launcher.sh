@@ -5,7 +5,7 @@
 function d_start()
 {
 	echo "Claymore : starting service"
-	/home/kobr4/claymore/ethdcrminer64 -epool http://eth1.nanopool.org:8888/0x615dd04F4F9e6789fb4FdB2A1123935A5421ef0B  & 
+	/home/kobr4/claymore/ethdcrminer64 -epool eth-eu1.nanopool.org:9999 -ewal 0x615dd04F4F9e6789fb4FdB2A1123935A5421ef0B  & 
 #        /home/kobr4/claymore/ethdcrminer64 -epool pool.alpereum.ch:3001 -ewal 0x615dd04F4F9e6789fb4FdB2A1123935A5421ef0B.MINING1 &
         export APP_PID=$!
 	echo $APP_PID > /tmp/claymore.pid
