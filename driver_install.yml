@@ -1,0 +1,4 @@
+--- 
+- hosts: amdrigs 
+  roles: 
+    - amd_driver  

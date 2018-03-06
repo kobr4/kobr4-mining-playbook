@@ -1,0 +1,25 @@
+---
+- set_fact:
+    driver_name: amdgpu-pro-17.40-483984
+
+- name: Uninstall previous AMD driver
+  command: amdgpu-pro-uninstall
+  ignore_errors: yes
+  become: yes
+
+- name: Copying driver archive {{ driver_name }}.tar.xz to /tmp
+  copy: src={{ driver_name }}.tar.xz dest=/tmp/
+
+- name: Extracting AMD driver  
+  command: tar Jxvf /tmp/{{ driver_name }}.tar.xz
+  args:
+    chdir: /tmp/
+
+- name: Install AMD driver
+  command: ./amdgpu-pro-install –y
+  args:
+    chdir: /tmp/{{ driver_name }}
+  become: yes
+
+
+

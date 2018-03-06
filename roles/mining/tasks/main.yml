@@ -1,6 +1,7 @@
 ---
 
-- copy: src=group_vars/mining/launcher.sh dest=/usr/local/bin/
+- name: Copying Launcher to /usr/local/bin 
+  copy: src=group_vars/mining/launcher.sh dest=/usr/local/bin/
   become: yes
 
 - file: path=/usr/local/bin/launcher.sh mode="a+rx"
