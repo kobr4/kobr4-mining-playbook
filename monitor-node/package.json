@@ -1,4 +1,7 @@
 {
     "name": "monitor-node",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "dependencies": {
+        "node-ssh": "^5.1.1"
+    }
 }

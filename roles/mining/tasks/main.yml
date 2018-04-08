@@ -10,6 +10,18 @@
 - copy: src=group_vars/mining/miner.service dest=/etc/systemd/system
   become: yes
 
+- name: Change sudo session timeout
+  become: yes
+  lineinfile:
+    dest: /etc/sudoers.d/kobr4-sudoers
+    line: 'kobr4 ALL = NOPASSWD:/sbin/reboot'
+    create: yes
+    owner: root 
+    group: root 
+    mode: "0440"
+    state: present
+    validate: 'visudo -c -f %s'  
+
 - command: systemctl enable miner.service
   become: yes
 

@@ -2,8 +2,9 @@
 
 var net = require('net');
 var request = require('request');
+var node_ssh = require('node-ssh')
 
-var list = ['192.168.0.11','192.168.0.14','192.168.0.17','192.168.0.19'];
+var list = ['192.168.0.11','192.168.0.22','192.168.0.17','192.168.0.19'];
 var destination_url = "http://www.nicolasmy.com/messages/message.php"
 
 var promise = require('promise');
@@ -53,6 +54,21 @@ function post_message(message_json) {
     );
 }
 
+function reboot_ip(ip) {
+    console.log('Rebooting IP: '+ip)
+    var ssh = new node_ssh()
+
+    ssh.connect({
+        host: ip,
+        username: kobr4
+      });
+
+    ssh.execCommand('sudo /usr/sbin/reboot', { cwd:'/home/kobr4' }).then(function(result) {
+    console.log('STDOUT: ' + result.stdout)
+    console.log('STDERR: ' + result.stderr)
+    });
+}
+
 
 console.log('Starting fetch');
 var results = list.map(fetch);
@@ -67,4 +83,13 @@ Promise.all(results).then(function (data) {
     console.log('--------');
     console.log(JSON.stringify(message) );
     post_message(message);
+
+
+    console.log('Will reboot broken server');
+    data.map(function (result) {
+        if (result['result'] == 'error') {
+            reboot_ip(result['ip']);
+        }
+    })
+
 });
