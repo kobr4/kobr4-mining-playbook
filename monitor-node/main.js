@@ -60,13 +60,14 @@ function reboot_ip(ip) {
 
     ssh.connect({
         host: ip,
-        username: kobr4
+        username: kobr4,
+        privateKey: '/root/.ssh/id_rsa'
+      }).then(function() {
+        ssh.execCommand('sudo reboot', { cwd:'/home/kobr4' }).then(function(result) {
+        console.log('STDOUT: ' + result.stdout)
+        console.log('STDERR: ' + result.stderr)
+        });
       });
-
-    ssh.execCommand('sudo /usr/sbin/reboot', { cwd:'/home/kobr4' }).then(function(result) {
-    console.log('STDOUT: ' + result.stdout)
-    console.log('STDERR: ' + result.stderr)
-    });
 }
 
 

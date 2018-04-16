@@ -30,6 +30,7 @@
     minute: "0"
     hour: "0,12"
     job : "/sbin/reboot"
+    state : absent
   become: yes
 
 #    name: miner
