@@ -1,0 +1,17 @@
+---
+- set_fact:
+    claymore_name: Claymore's Dual Ethereum+Decred_Siacoin_Lbry_Pascal_Blake2s_Keccak AMD+NVIDIA GPU Miner v11.9 - LINUX
+
+- name: Copying driver archive {{ claymore_name }}.tar.xz to /tmp
+  copy: src={{ claymore_name }}.tar.gz dest=/home/kobr4/claymore.tar.gz
+
+- name: Extracting Claymore miner  
+  command: tar zxvf /home/kobr4/claymore.tar.gz
+  args:
+    chdir: /home/kobr4/
+
+- name: Extracting Claymore miner  
+  command: rm -rf /home/kobr4/claymore
+
+- name: Extracting Claymore miner  
+  command: mv "/home/kobr4/{{ claymore_name }}" /home/kobr4/claymore

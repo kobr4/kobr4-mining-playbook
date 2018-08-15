@@ -1,0 +1,4 @@
+--- 
+- hosts: miningrigs 
+  roles: 
+    - claymore  
